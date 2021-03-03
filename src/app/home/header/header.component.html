@@ -1,0 +1,63 @@
+<section>
+  <div class="header">
+    <div class="one">
+      <div class="left-select">
+        <div class="logo">
+          <img src="http://bloc.leniugame.com/theme/img/logo.png" alt="">
+        </div>
+        <div class="title">乐牛综合管理平台</div>
+        <div class="tab-list">
+          <ul>
+            <li *ngFor="let item of tabList" (click)="display = true" (mouseover)="display = true">
+              <span>{{item.name}}</span>
+              <i [class]="item.icon"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-user">
+        <div class="item">
+          <i class="iconfont icon-user-s"></i>
+          <span>moonshine</span>
+        </div>
+        <div class="item">
+          <i class="iconfont icon-guanji"></i>
+          <span>退出</span>
+        </div>
+      </div>
+    </div>
+    <div class="two">
+
+    </div>
+    <div class="show-pannel" *ngIf="display">
+      <div class="pannel-content">
+          <div class="left">
+            常用标签
+          </div>
+          <div class="tag-type">
+              <li class="tag-item" *ngFor="let item of tabTypeList" [ngClass]="{'tag-active': item.value === tagFlag }">
+                {{item.label}}
+              </li>
+          </div>
+          <div class="tag-list">
+            <div class="tag-header" *ngIf="tagFlag === 'channel' || tagFlag === 'game'">
+              <div class="p-field-checkbox">
+                <p-checkbox name="group1" value="New York" checkboxIcon="pi pi-check"></p-checkbox>
+                <label style="margin-left: 6px">New York</label>
+              </div>
+              <input type="text" pInputText class="p-inputtext-sm" placeholder="快速搜索" >
+            </div>
+            <div class="tag-content">
+              <p-scrollPanel [style]="{flex: 1, maxHeight: '520px'}">
+                <div class="p-field-checkbox" *ngFor="let item of this.showListData">
+                  <p-checkbox [name]="'groups'" [value]="item.value" checkboxIcon="pi pi-check"></p-checkbox>
+                  <label style="margin-left: 6px">{{item.label}}</label>
+                </div>
+              </p-scrollPanel>
+            </div>
+
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

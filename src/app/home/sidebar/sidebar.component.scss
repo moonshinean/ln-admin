@@ -1,0 +1,17 @@
+.sidebar{
+  //width: 146px;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  .one-bar{
+    width: 140px;
+    background: #333744;
+    height: 100%;
+    color: #eee;
+  }
+  .two-bar{
+    width: 140px;
+    background: skyblue;
+    height: 100%;
+  }
+}

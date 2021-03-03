@@ -1,0 +1,30 @@
+{
+  "id": "2395772",
+  "name": "重构",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1413934",
+      "name": "关机",
+      "font_class": "guanji",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "6119260",
+      "name": "用户-实色",
+      "font_class": "user-s",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "5979966",
+      "name": "实 向下箭头-01",
+      "font_class": "shixiangxiajiantou-",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    }
+  ]
+}

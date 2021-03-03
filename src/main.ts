@@ -7,6 +7,9 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
+if (environment.isMoke){
+  import('./app/common/mock');
+}
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
