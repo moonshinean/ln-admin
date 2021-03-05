@@ -8,7 +8,7 @@
         <div class="title">乐牛综合管理平台</div>
         <div class="tab-list">
           <ul>
-            <li *ngFor="let item of tabList" (click)="display = true" (mouseover)="display = true">
+            <li *ngFor="let item of tabList" (mouseover)="showModal(item)">
               <span>{{item.name}}</span>
               <i [class]="item.icon"></i>
             </li>
@@ -27,36 +27,90 @@
       </div>
     </div>
     <div class="two">
-
+       <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText placeholder="Search"/>
+       </span>
     </div>
     <div class="show-pannel" *ngIf="display">
       <div class="pannel-content">
-          <div class="left">
-            常用标签
-          </div>
-          <div class="tag-type">
-              <li class="tag-item" *ngFor="let item of tabTypeList" [ngClass]="{'tag-active': item.value === tagFlag }">
-                {{item.label}}
-              </li>
-          </div>
-          <div class="tag-list">
-            <div class="tag-header" *ngIf="tagFlag === 'channel' || tagFlag === 'game'">
+        <div class="left">
+          常用标签
+        </div>
+        <div class="tag-type">
+          <li class="tag-item" *ngFor="let item of tabList" (click)="showModal(item)"
+              [ngClass]="{'tag-active': item.flag === tagFlag }">
+            {{item.name}}
+          </li>
+        </div>
+        <div class="tag-list">
+          <!--          <p-scrollPanel [style]="{height: '500px'}" #scrollPanel (scroll)="test($event)" appOnScroll>
+                      &lt;!&ndash;                      <div class="tag-header" *ngIf="tagFlag === 'channel' || tagFlag === 'game'">&ndash;&gt;
+                      <div class="tag-header">
+                        <div class="p-field-checkbox">
+                          <p-checkbox name="group1" value="New York" checkboxIcon="pi pi-check"></p-checkbox>
+                          <label style="margin-left: 6px">New York</label>
+                        </div>
+                        <input type="text" pInputText class="p-inputtext-sm" placeholder="快速搜索">
+                        <p-button label="Submit"></p-button>
+                      </div>
+                      <div class="tag-content">
+                        <div class="p-field-checkbox" *ngFor="let item of showListData">
+                          <p-checkbox [name]="'groups'" [value]="item.value" checkboxIcon="pi pi-check"></p-checkbox>
+                          <label style="margin-left: 6px">{{item.label}}</label>
+                        </div>
+                      </div>
+                    </p-scrollPanel>-->
+          <div #scroll style="max-height: 500px;overflow-y: scroll;" (scroll)="onScroll()" appOnScroll>
+            <div class="tag-header" *ngIf="tagFlag !== 'systems'">
               <div class="p-field-checkbox">
-                <p-checkbox name="group1" value="New York" checkboxIcon="pi pi-check"></p-checkbox>
-                <label style="margin-left: 6px">New York</label>
+                <p-checkbox name="group1" value="all" [(ngModel)]="TabData[tagFlag].checked" checkboxIcon="pi pi-check"
+                            (onChange)="checkAll($event)"></p-checkbox>
+                <label style="margin-left: 6px">全选</label>
               </div>
-              <input type="text" pInputText class="p-inputtext-sm" placeholder="快速搜索" >
+              <div class="p-field-checkbox" style="width: 100px" *ngIf="tagFlag == 'app'">
+                <p-checkbox name="group1" value="all" [(ngModel)]="TabData[tagFlag].checked" checkboxIcon="pi pi-check"
+                            (onChange)="checkAll($event)"></p-checkbox>
+                <label style="margin-left: 6px">买量</label>
+              </div>
+              <div class="p-field-checkbox" style="width: 100px" *ngIf="tagFlag == 'app'">
+                <p-checkbox name="group1" value="all" [(ngModel)]="TabData[tagFlag].checked" checkboxIcon="pi pi-check"
+                            (onChange)="checkAll($event)"></p-checkbox>
+                <label style="margin-left: 6px">联运</label>
+              </div>
+              <div class="p-field-checkbox" style="width: 100px" *ngIf="tagFlag == 'app'">
+                <p-checkbox name="group1" value="all" [(ngModel)]="TabData[tagFlag].checked" checkboxIcon="pi pi-check"
+                            (onChange)="checkAll($event)"></p-checkbox>
+                <label style="margin-left: 6px">专服</label>
+              </div>
+              <div class="p-field-checkbox" style="width: 100px" *ngIf="tagFlag == 'app'">
+                <p-checkbox name="group1" value="all" [(ngModel)]="TabData[tagFlag].checked" checkboxIcon="pi pi-check"
+                            (onChange)="checkAll($event)"></p-checkbox>
+                <label style="margin-left: 6px">海外</label>
+              </div>
+              <div class="p-field-checkbox" style="width: 100px" *ngIf="tagFlag == 'app'">
+                <p-checkbox name="group1" value="all" [(ngModel)]="TabData[tagFlag].checked" checkboxIcon="pi pi-check"
+                            (onChange)="checkAll($event)"></p-checkbox>
+                <label style="margin-left: 6px">公会</label>
+              </div>
+              <input type="text" pInputText class="p-inputtext-sm" placeholder="快速搜索"
+                     (ngModelChange)="searchData($event)" [(ngModel)]="TabData[tagFlag].search">
+              <!--              <p-button label="Submit" (click)="getCheckData()"></p-button>-->
+              <div class="sort-btn" *ngIf="tagFlag == 'app'" (click)="setSort()">
+                <span>排序</span>
+                <i class="pi" [ngClass]="{'pi-arrow-up': !sort, 'pi-arrow-down': sort}"></i>
+              </div>
+              <!--              <button pButton pRipple icon="pi pi-arrow-up"  type="button" label="排序" class="p-button-raised p-button-sm p-button-text"></button>-->
             </div>
             <div class="tag-content">
-              <p-scrollPanel [style]="{flex: 1, maxHeight: '520px'}">
-                <div class="p-field-checkbox" *ngFor="let item of this.showListData">
-                  <p-checkbox [name]="'groups'" [value]="item.value" checkboxIcon="pi pi-check"></p-checkbox>
-                  <label style="margin-left: 6px">{{item.label}}</label>
-                </div>
-              </p-scrollPanel>
+              <div class="p-field-checkbox " *ngFor="let item of showListData" [ngClass]="{'tag-active': item.active}">
+                <p-checkbox [name]="'groups'" (onChange)="checkStatus($event, item)" [value]="item.value"
+                            [(ngModel)]="TabData[tagFlag].data" checkboxIcon="pi pi-check"></p-checkbox>
+                <label style="margin-left: 6px">{{item.label}}</label>
+              </div>
             </div>
-
           </div>
+        </div>
       </div>
     </div>
   </div>

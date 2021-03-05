@@ -1,39 +1,47 @@
 @import "src/assets/css/common";
-.header{
+
+.header {
   color: #eeeeee;
   font-size: 13px;
+
   .one {
     height: 44px;
     background: #373D41;
     display: flex;
     justify-content: space-between;
+
     .left-select {
       display: flex;
       align-items: center;
+
       .logo {
         display: flex;
         align-items: center;
         padding: 0 10px;
         height: 40px;
+
         img {
           width: 34px;
         }
-        &:hover{
+
+        &:hover {
           background: #2A2F32;
         }
       }
 
-      .title{
+      .title {
         padding: 0 10px;
         height: 40px;
         line-height: 40px;
         border-left: 1px solid #2A2F32;
         border-right: 1px solid #2A2F32;
-        &:hover{
+
+        &:hover {
           background: #2A2F32;
         }
       }
-      .tab-list{
+
+      .tab-list {
         li {
           list-style: none;
           float: left;
@@ -41,107 +49,143 @@
           height: 40%;
           line-height: 40px;
           border-right: 1px solid #555;
+
           i {
             margin-left: 8px;
             font-size: 14px;
           }
-          &:hover{
+
+          &:hover {
             background: #eeeeee;
             color: #2A2F32;
           }
         }
       }
     }
-    .right-user{
+
+    .right-user {
       font-size: 14px;
       display: flex;
       align-items: center;
       padding-right: 10px;
+
       .item {
         padding: 0 10px;
         height: 40px;
         line-height: 40px;
-        i{
+
+        i {
           margin-right: 6px;
         }
-        &:hover{
+
+        &:hover {
           background: #2A2F32;
         }
       }
     }
   }
+
   .two {
     border-top: 1px solid #eee;
     height: 31px;
     background: #373D41;
+    ::ng-deep .p-input-icon-left > .p-inputtext {
+      height: 20px;
+    }
   }
-  .show-pannel{
+
+  .show-pannel {
     margin-top: -32px;
     position: absolute;
     z-index: 99;
     background: #fff;
     max-height: 540px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     width: 100%;
     animation: show-pannel 0.2ms;
-    box-shadow: -2px  0px 12px #2A2F32;
-    .pannel-content{
+    box-shadow: -2px 0px 12px #2A2F32;
+
+    .pannel-content {
       display: flex;
       width: 100%;
       max-height: 100%;
       //overflow: scroll;
       color: #333333;
-      padding: 10px 36px;
-      .left{
+      padding: 10px 0 10px 36px;
+
+      .left {
         width: 180px;
       }
-      .tag-type{
+
+      .tag-type {
         width: 132px;
         border-left: 1px solid #F3F3F3;
         border-right: 1px solid #F3F3F3;
-        height: 100%;
         padding: 0 10px 0 15px;
         color: #00C1DE;
+
         .tag-item {
           list-style: none;
           margin: 6px 0;
           padding: 6px;
           border-radius: 4px;
-          &:hover{
+
+          &:hover {
             background: #00C1DE;
             color: #fff;
           }
         }
       }
-      .tag-list{
+
+      .tag-list {
         flex: 1;
-        padding: 0 10px;
+        padding-left: 10px;
         .tag-header {
+          margin-bottom: 2px;
           @include check-item;
-          ::ng-deep .p-inputtext{
+          .p-field-checkbox {
+            @include p-field-checkbox;
+          }
+          ::ng-deep .p-inputtext {
             padding: 0.2rem 0.2rem;
           }
-        }
-        .tag-content{
-          width: 100%;
-          @include check-item;
-          ::ng-deep .p-scrollpanel-content {
+          .sort-btn {
+            margin-left: 10px;
+            width: 64px;
+            height: 30px;
             display: flex;
-            flex-wrap: wrap;
-            font-size: 12px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+            i {
+              font-size: 12px;
+              margin-left: 4px;
+            }
+            &:hover{
+              background: #E6E6E6;
+            }
           }
         }
-
+        .tag-content {
+          width: 100%;
+          height: auto;
+          @include check-item;
+          .p-field-checkbox {
+            height: 30px;
+            @include p-field-checkbox;
+          }
+        }
       }
     }
   }
+
 
   .tag-active {
     background: #00C1DE;
     color: #fff;
   }
-
-  @keyframes  show-pannel{
+  @keyframes show-pannel {
     0% {
       height: 0;
     }
@@ -152,9 +196,9 @@
       height: 540px;
     }
   }
-  @keyframes  hide-pannel{
+  @keyframes hide-pannel {
     0% {
-      height:  540px;
+      height: 540px;
     }
     50% {
       height: 330px;

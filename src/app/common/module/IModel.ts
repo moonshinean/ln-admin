@@ -1,6 +1,7 @@
 export interface ITabList{
   name?: string;
   icon?: string;
+  flag?: string;
 }
 
 export interface IChennelData{
@@ -8,7 +9,11 @@ export interface IChennelData{
   short?: string;
   name?: string;
 }
-
+export interface IGameData{
+  game_name?: string;
+  game_short?: string;
+  game_id?: string;
+}
 export interface IAppData {
   game_id?: string;
   appid?: string;

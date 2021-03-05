@@ -1,41 +1,42 @@
 @mixin check-item {
-  //display: flex;
-  height: 30px;
+  display: flex;
+
   align-items: center;
-  //flex-wrap: wrap;
+  flex-wrap: wrap;
   font-size: 12px;
-  .p-field-checkbox {
-    width: 150px;
-    border-radius: 4px;
-    padding: 6px 10px;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    //background: #00C1DE;
-    margin: 2px 2px;
-    //color: #fff;
-    ::ng-deep  .p-checkbox-box {
-      width: 15px;
-      height: 15px;
-      border: 1px solid #999;
-    }
-    ::ng-deep .p-checkbox-box.p-highlight {
-      background: #767676;
-    }
-    ::ng-deep .p-checkbox .p-checkbox-box .p-checkbox-icon {
-      font-size: 10px;
-    }
-    ::ng-deep .p-hidden-accessible {
-      display: none;
-    }
-    ::ng-deep .p-checkbox {
-      width: 15px;
-      height: 15px;
-      text-underline: none;
-    }
-    &:hover{
-      background: #00C1DE;
-      color: #fff;
-    }
+}
+
+@mixin p-field-checkbox {
+  width: 150px;
+  border-radius: 4px;
+  padding: 6px 10px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  //background: #00C1DE;
+  margin: 2px 2px;
+  //color: #fff;
+  ::ng-deep  .p-checkbox-box {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #999;
+  }
+  ::ng-deep .p-checkbox-box.p-highlight {
+    background: #767676;
+  }
+  ::ng-deep .p-checkbox .p-checkbox-box .p-checkbox-icon {
+    font-size: 10px;
+  }
+  ::ng-deep .p-hidden-accessible {
+    display: none;
+  }
+  ::ng-deep .p-checkbox {
+    width: 15px;
+    height: 15px;
+    text-underline: none;
+  }
+  &:hover{
+    background: #00C1DE;
+    color: #fff;
   }
 }
